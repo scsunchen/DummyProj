@@ -8,11 +8,12 @@
 	<bean id="helloService"
 		class="org.springframework.remoting.caucho.HessianProxyFactoryBean">
 		<property name="serviceUrl">
-			<value>http://localhost/demo/services/hello-service</value>
+			<value>http://localhost:8080/DummyProj/services/hello-service</value>
 		</property>
 		<property name="serviceInterface">
 			<value>com.taoists.hessian.HelloService</value>
 		</property>
+		<property name="service" ref="helloService"/>
 	</bean>
 
 </beans>
