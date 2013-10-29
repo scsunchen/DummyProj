@@ -52,16 +52,4 @@
 	</bean>
 
 	<tx:annotation-driven transaction-manager="transactionManager" />
-	<!--
-	<bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter">   
-        线程安全的访问session 
-         <property name="synchronizeOnSession" value="true"/>   
-         <property name="customArgumentResolvers">  
-            <list>  
-               <bean class="com.taoists.annotation.RequestJsonParamMethodArgumentResolver"/>  
-               <bean class="com.taoists.annotation.FormModelMethodArgumentResolver"/>  
-            </list>  
-         </property>  
-     </bean>
---> 
 </beans>

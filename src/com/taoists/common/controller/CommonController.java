@@ -15,6 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.google.common.collect.Sets;
+import com.taoists.base.service.UserService;
 import com.taoists.common.ViewName;
 import com.taoists.demo.service.DemoService;
 
@@ -82,4 +83,6 @@ public abstract class CommonController {
 	@Autowired
 	protected DemoService demoService;
 
+	@Autowired
+	protected UserService userService;
 }
