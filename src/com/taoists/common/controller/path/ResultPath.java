@@ -1,4 +1,4 @@
-package com.taoists.demo.controller.path;
+package com.taoists.common.controller.path;
 
 /**
  * @author lv_jiafa@hoperun.com
@@ -7,5 +7,6 @@ package com.taoists.demo.controller.path;
 public interface ResultPath {
 	
 	String demo = "/demo";
-
+	String user = "/user";
+	String home = "/index";
 }

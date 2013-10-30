@@ -14,12 +14,14 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.taoists.common.controller.CommonController;
 import com.taoists.common.controller.Module;
+import com.taoists.common.controller.path.ResultPath;
 
 /**
  * @author Simon Lv
  * @since Oct 29, 2013
  */
 @Controller
+@RequestMapping(ResultPath.home)
 public class HomeController extends CommonController {
 	
 	@RequestMapping(method = RequestMethod.GET)

@@ -7,19 +7,18 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.taoists.base.controller.path.UserResultPath;
 import com.taoists.base.entity.User;
 import com.taoists.common.ViewName;
 import com.taoists.common.controller.CommonController;
 import com.taoists.common.controller.Module;
-import com.taoists.demo.controller.path.ResultPath;
+import com.taoists.common.controller.path.ResultPath;
 
 /**
  * @author Simon Lv
  * @since Oct 29, 2013
  */
 @Controller
-@RequestMapping(UserResultPath.user)
+@RequestMapping(ResultPath.user)
 public class UsersController extends CommonController {
 
 	@RequestMapping(value="/register",method=RequestMethod.GET)
