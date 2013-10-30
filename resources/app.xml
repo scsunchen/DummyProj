@@ -42,6 +42,7 @@
 			<list>
 				<value>com.taoists.common.orm.entity</value>
 				<value>com.taoists.demo.entity</value>
+				<value>com.taoists.base.entity</value>
 			</list>
 		</property>
 	</bean>

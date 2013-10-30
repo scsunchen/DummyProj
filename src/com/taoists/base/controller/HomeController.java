@@ -10,6 +10,7 @@ import java.util.Locale;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.taoists.common.controller.CommonController;
 import com.taoists.common.controller.Module;
@@ -21,7 +22,7 @@ import com.taoists.common.controller.Module;
 @Controller
 public class HomeController extends CommonController {
 	
-	@RequestMapping
+	@RequestMapping(method = RequestMethod.GET)
 	public String home(Locale locale, Model model) {
 		logger.info("Welcome home! The client locale is {}.", locale);
 		
