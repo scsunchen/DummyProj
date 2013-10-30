@@ -34,6 +34,7 @@ public class HomeController extends CommonController {
 		String formattedDate = dateFormat.format(date);
 		
 		model.addAttribute("serverTime", formattedDate );
+		model.addAttribute("errorMessages", "");
 		
 		return "home";
 	}

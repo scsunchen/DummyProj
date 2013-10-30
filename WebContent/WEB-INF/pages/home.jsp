@@ -9,7 +9,7 @@
 	</head>
 
 	<body>
-
+		<span style="color:red">${errorMessages}</span>
 		<div class="container">
 			<div class="row">
 				<form action="<c:url value='/user/login'/>" id="validateForm" class="form-horizontal" method="post" >

@@ -34,13 +34,19 @@ public class UsersController extends CommonController {
 	}
 	
 	@RequestMapping(value="/register-new", method=RequestMethod.GET)
-	public String register(){
+	public String register(Model model){
+		model.addAttribute("errorMessages", "");
 		return forward(ViewName.insert);
 	}
 	
 	@RequestMapping(value="/register", method = RequestMethod.POST)
-	public String createUser(User user){
+	public String createUser(Model model, User user){
 		logger.debug("create: user[{}]", user);
+		if(userService.getUserByName(user.getUsername()).size()>0){
+			model.addAttribute("errorMessages", "用户名重复");
+			return forward(ViewName.insert);
+		}
+		
 		userService.save(user);
 		return redirect(ResultPath.user);
 	}
@@ -48,10 +54,15 @@ public class UsersController extends CommonController {
 	@RequestMapping(value = "/login",method=RequestMethod.POST)
 	public String login(HttpServletRequest request, Model model, User user) {
 		// TODO
-		logger.debug("login: username[{}]", user.getUsername());
-		logger.debug("login: password[{}]", user.getPassword());
 		String username = user.getUsername();
-//		String password = 
+		String password = user.getPassword();
+		logger.debug("login: username[{}]", username);
+		logger.debug("login: password[{}]", password);
+		
+		if(!userService.isExistUser(user)){
+			model.addAttribute("errorMessages", "填写有错");
+			return "home";
+		}
 		
 		return redirect(ResultPath.user);
 	}

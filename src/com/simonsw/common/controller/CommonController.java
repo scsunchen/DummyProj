@@ -20,7 +20,7 @@ import com.simonsw.common.ViewName;
 import com.simonsw.demo.service.DemoService;
 
 /**
- * @author lv_jiafa@hoperun.com
+ * @author Simon Lv
  * @since 2012-8-9
  */
 public abstract class CommonController {
