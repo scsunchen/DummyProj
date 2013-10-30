@@ -8,7 +8,7 @@
 	<bean name="/hello-service"
 		class="org.springframework.remoting.caucho.HessianServiceExporter">
 		<property name="service" ref="helloService" />
-		<property name="serviceInterface" value="com.taoists.hessian.HelloService" />
+		<property name="serviceInterface" value="com.simonsw.hessian.HelloService" />
 	</bean>
 
 </beans>

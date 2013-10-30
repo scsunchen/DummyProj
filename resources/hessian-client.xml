@@ -11,7 +11,7 @@
 			<value>http://localhost:8080/DummyProj/services/hello-service</value>
 		</property>
 		<property name="serviceInterface">
-			<value>com.taoists.hessian.HelloService</value>
+			<value>com.simonsw.hessian.HelloService</value>
 		</property>
 		<property name="service" ref="helloService"/>
 	</bean>

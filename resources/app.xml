@@ -14,7 +14,7 @@
 	default-autowire="byType">
 
 	<context:annotation-config />
-	<context:component-scan base-package="com.taoists" />
+	<context:component-scan base-package="com.simonsw" />
 	<context:property-placeholder location="classpath:app.properties" />
 
 	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
@@ -27,7 +27,7 @@
 	<bean id="sessionFactory"
 		class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
 		<property name="entityInterceptor">
-			<bean class="com.taoists.common.orm.interceptor.EntityInterceptor" />
+			<bean class="com.simonsw.common.orm.interceptor.EntityInterceptor" />
 		</property>
 		<property name="dataSource" ref="dataSource" />
 		<property name="hibernateProperties">
@@ -40,9 +40,9 @@
 		</property>
 		<property name="packagesToScan">
 			<list>
-				<value>com.taoists.common.orm.entity</value>
-				<value>com.taoists.demo.entity</value>
-				<value>com.taoists.base.entity</value>
+				<value>com.simonsw.common.orm.entity</value>
+				<value>com.simonsw.demo.entity</value>
+				<value>com.simonsw.base.entity</value>
 			</list>
 		</property>
 	</bean>

@@ -31,7 +31,7 @@
 									<td colspan="2" align="center">
 										<div align="center">
 											<button type="submit" class="btn btn-primary">登录</button>
-											<a href="<c:url value='/user/register'/>">注册</a>
+											<a href="<c:url value='/user/register-new'/>">注册</a>
 										</div>
 									</td>
 								</tr>							

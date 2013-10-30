@@ -11,7 +11,7 @@
 <body>
 	<div class="container">
 		<div class="row">
-			<form action="${pageContext.request.contextPath }/user" id="validateForm" class="form-horizontal" method="post" >
+			<form action="<c:url value='/user/register'/>" id="validateForm" class="form-horizontal" method="post" >
 				<table class="table table-bordered table-striped">
 						<tbody>
 							<tr>
