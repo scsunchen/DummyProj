@@ -6,8 +6,7 @@ package com.simonsw.common;
  */
 public interface Cons {
 
-	String taobaoPrefix = "taobao_";
-	String expressPrefix = "express_";
+	String simonswPrefix = "simonsw_";
 
 	String insert = "insert";
 

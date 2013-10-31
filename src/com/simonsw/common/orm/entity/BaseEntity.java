@@ -3,11 +3,8 @@ package com.simonsw.common.orm.entity;
 import java.io.Serializable;
 
 import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
 
-import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Type;
 import org.joda.time.DateTime;
 
@@ -19,23 +16,23 @@ import org.joda.time.DateTime;
 @MappedSuperclass
 public abstract class BaseEntity implements Serializable {
 
-	@Id
-	@GeneratedValue(generator = "increment")
-	@GenericGenerator(name = "increment", strategy = "increment")
-	private Long id;
+//	@Id
+//	@GeneratedValue(generator = "increment")
+//	@GenericGenerator(name = "increment", strategy = "increment")
+//	private Long id;
 	@Column(updatable = false)
 	@Type(type = "com.simonsw.common.orm.entity.type.PersistentDateTime")
 	private DateTime createDateTime;
 	@Type(type = "com.simonsw.common.orm.entity.type.PersistentDateTime")
 	private DateTime lastModifyDateTime;
 
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
+//	public Long getId() {
+//		return id;
+//	}
+//
+//	public void setId(Long id) {
+//		this.id = id;
+//	}
 
 	public DateTime getCreateDateTime() {
 		return createDateTime;
@@ -53,9 +50,9 @@ public abstract class BaseEntity implements Serializable {
 		this.lastModifyDateTime = lastModifyDateTime;
 	}
 
-	@Override
-	public String toString() {
-		return String.format("BaseEntity [id=%s, createDateTime=%s, lastModifyDateTime=%s]", id, createDateTime, lastModifyDateTime);
-	}
+//	@Override
+//	public String toString() {
+//		return String.format("BaseEntity [id=%s, createDateTime=%s, lastModifyDateTime=%s]", id, createDateTime, lastModifyDateTime);
+//	}
 
 }

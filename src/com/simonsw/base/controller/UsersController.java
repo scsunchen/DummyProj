@@ -11,7 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.simonsw.base.entity.User;
+import com.simonsw.base.entity.Users;
 import com.simonsw.common.ViewName;
 import com.simonsw.common.bean.Page;
 import com.simonsw.common.controller.CommonController;
@@ -40,9 +40,9 @@ public class UsersController extends CommonController {
 	}
 	
 	@RequestMapping(value="/register", method = RequestMethod.POST)
-	public String createUser(Model model, User user){
+	public String createUser(Model model, Users user){
 		logger.debug("create: user[{}]", user);
-		if(userService.getUserByName(user.getUsername()).size()>0){
+		if(userService.getUserByName(user.getUsername()) != null){
 			model.addAttribute("errorMessages", "用户名重复");
 			return forward(ViewName.insert);
 		}
@@ -52,7 +52,7 @@ public class UsersController extends CommonController {
 	}
 	
 	@RequestMapping(value = "/login",method=RequestMethod.POST)
-	public String login(HttpServletRequest request, Model model, User user) {
+	public String login(HttpServletRequest request, Model model, Users user) {
 		// TODO
 		String username = user.getUsername();
 		String password = user.getPassword();

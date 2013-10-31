@@ -1,8 +1,14 @@
 package com.simonsw.demo.entity;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.GenericGenerator;
+
+import com.simonsw.common.Cons;
 import com.simonsw.common.orm.entity.BaseEntity;
 
 /**
@@ -11,9 +17,13 @@ import com.simonsw.common.orm.entity.BaseEntity;
  */
 @SuppressWarnings("serial")
 @Entity
-@Table(name = "taoists_demo")
+@Table(name = Cons.simonswPrefix + "demo")
 public class Demo extends BaseEntity {
-
+	@Id
+	@GeneratedValue(generator = "increment")
+	@GenericGenerator(name = "increment", strategy = "increment")
+	@Column(name = "id")
+	private Long id;
 	private String employeeNo;
 	private String name;
 	private String sex;
@@ -83,6 +93,20 @@ public class Demo extends BaseEntity {
 	 */
 	public void setCode(String code) {
 		this.code = code;
+	}
+
+	/**
+	 * @return the id
+	 */
+	public Long getId() {
+		return id;
+	}
+
+	/**
+	 * @param id the id to set
+	 */
+	public void setId(Long id) {
+		this.id = id;
 	}
 
 }

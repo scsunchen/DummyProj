@@ -1,0 +1,90 @@
+/**
+ * 
+ */
+package com.simonsw.security;
+
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+
+import com.simonsw.base.entity.Resource;
+import com.simonsw.base.entity.Role;
+import com.simonsw.base.entity.RoleResource;
+import com.simonsw.base.entity.UserRole;
+import com.simonsw.base.entity.Users;
+import com.simonsw.base.service.RoleResourceService;
+import com.simonsw.base.service.UserRoleService;
+import com.simonsw.base.service.UserService;
+import com.simonsw.common.util.StringUtils;
+
+/**
+ * @author Simon Lv
+ * @since Oct 31, 2013
+ */
+public class MyAuthenticationManager implements UserDetailsService {
+	@Autowired
+	protected UserService userService;
+	@Autowired
+	protected UserRoleService userRoleService;
+	@Autowired
+	protected RoleResourceService roleResourceService;
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see org.springframework.security.core.userdetails.UserDetailsService#
+	 * loadUserByUsername(java.lang.String)
+	 */
+	@Override
+	public UserDetails loadUserByUsername(String username)
+			throws UsernameNotFoundException {
+		if (!StringUtils.isEmpty(username)) {
+			throw new UsernameNotFoundException("用户名不能为空！");
+		}
+		Users user = userService.getUserByName(username);
+		Collection<GrantedAuthority> grantedAuths = obtionGrantedAuthorities(user);
+
+		boolean enables = true;
+		boolean accountNonExpired = true;
+		boolean credentialsNonExpired = true;
+		boolean accountNonLocked = true;
+		// 封装成spring security的user
+		User userdetail = new User(user.getUsername(), user.getPassword(),
+				enables, accountNonExpired, credentialsNonExpired,
+				accountNonLocked, grantedAuths);
+		return userdetail;
+	}
+
+	// 取得用户的权限
+	private Set<GrantedAuthority> obtionGrantedAuthorities(Users user) {
+		Set<GrantedAuthority> authSet = new HashSet<GrantedAuthority>();
+		List<Resource> resources = new ArrayList<Resource>();
+		Role role;
+		List<RoleResource> roleResources;
+		List<UserRole> userRoles = userRoleService.getUserRoleByUserId(user
+				.getUserid());
+		for (UserRole userRole : userRoles) {
+			role = userRole.getRole();
+			roleResources = roleResourceService.getUserRoleByRoleId(role
+					.getRoleid());
+			for (RoleResource roleResource : roleResources) {
+				resources.add(roleResource.getResource());
+			}
+		}
+
+		for (Resource res : resources) {
+			authSet.add(new SimpleGrantedAuthority(res.getModelname()));
+		}
+		return authSet;
+	}
+}
