@@ -6,6 +6,8 @@ package com.simonsw.security;
 import java.util.Collection;
 import java.util.Iterator;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.security.access.AccessDecisionManager;
 import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.access.ConfigAttribute;
@@ -18,7 +20,7 @@ import org.springframework.security.core.GrantedAuthority;
  * @since Oct 31, 2013
  */
 public class MyAccessDecisionManager implements AccessDecisionManager {
-
+	protected Logger logger = LoggerFactory.getLogger(getClass());
 	/*
 	 * (non-Javadoc)
 	 * 
@@ -40,7 +42,7 @@ public class MyAccessDecisionManager implements AccessDecisionManager {
 			ConfigAttribute configAttribute = iterator.next();
 			// 访问所请求资源所需要的权限
 			String needPermission = configAttribute.getAttribute();
-			System.out.println("needPermission is " + needPermission);
+			logger.debug("[MyAccessDecisionManager] needPermission is " + needPermission);
 			// 用户所拥有的权限authentication
 			for (GrantedAuthority ga : authentication.getAuthorities()) {
 				if (needPermission.contains((ga.getAuthority()))) {

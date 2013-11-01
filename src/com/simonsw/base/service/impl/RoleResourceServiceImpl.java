@@ -7,6 +7,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
+import com.simonsw.base.entity.Role;
 import com.simonsw.base.entity.RoleResource;
 import com.simonsw.base.service.RoleResourceService;
 import com.simonsw.common.orm.dao.HibernateDaoSupport;
@@ -23,8 +24,8 @@ public class RoleResourceServiceImpl extends HibernateDaoSupport<RoleResource> i
 	 * @see com.simonsw.base.service.RoleResourceService#getUserRoleByRoleId(long)
 	 */
 	@Override
-	public List<RoleResource> getUserRoleByRoleId(long roleId) {
-		return findDatas("role_id", roleId);
+	public List<RoleResource> getUserRoleByRoleId(Role role) {
+		return findDatas("role", role);
 	}
 
 }

@@ -6,6 +6,7 @@ package com.simonsw.base.service;
 import java.util.List;
 
 import com.simonsw.base.entity.UserRole;
+import com.simonsw.base.entity.Users;
 import com.simonsw.common.orm.dao.BaseDao;
 
 /**
@@ -14,5 +15,5 @@ import com.simonsw.common.orm.dao.BaseDao;
  */
 public interface UserRoleService extends BaseDao<UserRole> {
 
-	public List<UserRole> getUserRoleByUserId(long userId);
+	public List<UserRole> getUserRoleByUserId(Users user);
 }

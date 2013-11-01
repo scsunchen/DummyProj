@@ -71,12 +71,10 @@ public class MyAuthenticationManager implements UserDetailsService {
 		List<Resource> resources = new ArrayList<Resource>();
 		Role role;
 		List<RoleResource> roleResources;
-		List<UserRole> userRoles = userRoleService.getUserRoleByUserId(user
-				.getUserid());
+		List<UserRole> userRoles = userRoleService.getUserRoleByUserId(user);
 		for (UserRole userRole : userRoles) {
 			role = userRole.getRole();
-			roleResources = roleResourceService.getUserRoleByRoleId(role
-					.getRoleid());
+			roleResources = roleResourceService.getUserRoleByRoleId(role);
 			for (RoleResource roleResource : roleResources) {
 				resources.add(roleResource.getResource());
 			}
