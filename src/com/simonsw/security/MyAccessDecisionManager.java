@@ -20,7 +20,7 @@ import org.springframework.security.core.GrantedAuthority;
  * @since Oct 31, 2013
  */
 public class MyAccessDecisionManager implements AccessDecisionManager {
-	protected Logger logger = LoggerFactory.getLogger(getClass());
+	private Logger logger = LoggerFactory.getLogger(getClass());
 	/*
 	 * (non-Javadoc)
 	 * 

@@ -9,6 +9,8 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -33,11 +35,12 @@ import com.simonsw.common.util.StringUtils;
  */
 public class MyAuthenticationManager implements UserDetailsService {
 	@Autowired
-	protected UserService userService;
+	private UserService userService;
 	@Autowired
-	protected UserRoleService userRoleService;
+	private UserRoleService userRoleService;
 	@Autowired
-	protected RoleResourceService roleResourceService;
+	private RoleResourceService roleResourceService;
+	private Logger logger = LoggerFactory.getLogger(getClass());
 
 	/*
 	 * (non-Javadoc)
@@ -48,6 +51,7 @@ public class MyAuthenticationManager implements UserDetailsService {
 	@Override
 	public UserDetails loadUserByUsername(String username)
 			throws UsernameNotFoundException {
+		logger.debug("[MyAuthenticationManager] username ==> " + username);
 		if (!StringUtils.isEmpty(username)) {
 			throw new UsernameNotFoundException("用户名不能为空！");
 		}

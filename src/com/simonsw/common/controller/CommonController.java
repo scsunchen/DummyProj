@@ -31,7 +31,7 @@ public abstract class CommonController {
 
 	protected String forward(ViewName viewName) {
 		String path = this.getClass().getAnnotation(RequestMapping.class).value()[0];
-		logger.debug("[CommonController] ==> "+getModule() + path.replaceAll("-", "") + path + viewName.getValue());
+		logger.debug("[CommonController] whole path ==> "+getModule() + path.replaceAll("-", "") + path + viewName.getValue());
 		return getModule() + path.replaceAll("-", "") + path + viewName.getValue();
 	}
 

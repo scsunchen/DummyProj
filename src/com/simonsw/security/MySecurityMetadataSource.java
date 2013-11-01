@@ -10,8 +10,6 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.servlet.http.HttpServletRequest;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,13 +17,11 @@ import org.springframework.security.access.ConfigAttribute;
 import org.springframework.security.access.SecurityConfig;
 import org.springframework.security.web.FilterInvocation;
 import org.springframework.security.web.access.intercept.FilterInvocationSecurityMetadataSource;
-import org.springframework.security.web.util.AntPathRequestMatcher;
-import org.springframework.security.web.util.RequestMatcher;
 
 import com.simonsw.base.entity.Role;
 import com.simonsw.base.entity.RoleResource;
-import com.simonsw.base.entity.Users;
 import com.simonsw.base.entity.UserRole;
+import com.simonsw.base.entity.Users;
 import com.simonsw.base.service.RoleResourceService;
 import com.simonsw.base.service.UserRoleService;
 import com.simonsw.base.service.UserService;
@@ -43,9 +39,9 @@ public class MySecurityMetadataSource implements
 	@Autowired
 	protected RoleResourceService roleResourceService;
 
-	protected Logger logger = LoggerFactory.getLogger(getClass());
+	private Logger logger = LoggerFactory.getLogger(getClass());
 
-	private static LinkedHashMap<RequestMatcher, Collection<ConfigAttribute>> resourceMap = null;
+	private static LinkedHashMap<String, Collection<ConfigAttribute>> resourceMap = null;
 
 	/*
 	 * (non-Javadoc)
@@ -57,16 +53,21 @@ public class MySecurityMetadataSource implements
 	@Override
 	public Collection<ConfigAttribute> getAttributes(Object object)
 			throws IllegalArgumentException {
-		HttpServletRequest request = ((FilterInvocation) object).getRequest();
+		String requestURL = ((FilterInvocation) object).getRequestUrl();
+
+		logger.debug("[MySecurityMetadataSource] 请求地址 ===> "
+				+ ((FilterInvocation) object).getRequestUrl());
 		if (null == resourceMap) {
-			System.out.println("请求地址 "
-					+ ((FilterInvocation) object).getRequestUrl());
 			loadResourceDefine();
-			System.out.println("我需要的认证：" + resourceMap.toString());
+			logger.debug("[MySecurityMetadataSource] 我需要的认证 ==> "
+					+ resourceMap.toString());
 		}
-		for (Map.Entry<RequestMatcher, Collection<ConfigAttribute>> entry : resourceMap
+		for (Map.Entry<String, Collection<ConfigAttribute>> entry : resourceMap
 				.entrySet()) {
-			if (entry.getKey().matches(request)) {
+			logger.debug("[MySecurityMetadataSource] entry.getKey() ===> "
+					+ entry.getKey());
+			logger.debug("[MySecurityMetadataSource] request ===> " + requestURL);
+			if (entry.getKey().equals(requestURL)) {
 				return entry.getValue();
 			}
 		}
@@ -77,12 +78,12 @@ public class MySecurityMetadataSource implements
 	 * Load all resource
 	 */
 	private void loadResourceDefine() {
-		resourceMap = new LinkedHashMap<RequestMatcher, Collection<ConfigAttribute>>();
+		resourceMap = new LinkedHashMap<String, Collection<ConfigAttribute>>();
 		Map<String, String> resource = getResource();
 		for (Map.Entry<String, String> entry : resource.entrySet()) {
 			Collection<ConfigAttribute> configAttributes = new ArrayList<ConfigAttribute>();
 			configAttributes.add(new SecurityConfig(entry.getValue()));
-			resourceMap.put(new AntPathRequestMatcher(entry.getKey()),
+			resourceMap.put(entry.getKey(),
 					configAttributes);
 		}
 	}
