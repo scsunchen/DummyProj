@@ -3,6 +3,8 @@
  */
 package com.simonsw.base.service.impl;
 
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 
 import com.simonsw.base.entity.Users;
@@ -45,7 +47,12 @@ public class UserServiceImpl extends HibernateDaoSupport<Users> implements
 	 */
 	@Override
 	public Users getUserByName(String username) {
-		return findDatas("username", username).get(0);
+		Users user = null;
+		List<Users> users = findDatas("username", username);
+		if(users != null && users.size() > 0){
+			user = users.get(0);
+		}
+		return user;
 	}
 
 }

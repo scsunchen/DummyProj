@@ -42,14 +42,14 @@
 							</tr>
 							<c:forEach var="user" items="${page.datas}">
 								<tr>
-									<td>${user.id}</td>
+									<td>${user.userid}</td>
 									<td>${user.username}</td>
 									<td>
 										<u:dateFormat value="${user.createDateTime}"/>
 									</td>
 									<td>
-										<a href="${pageContext.request.contextPath}/user/edit/${user.id}">修改</a>
-										<a href="${pageContext.request.contextPath}/user/destroy/${user.id}" class="deletePromptClass">删除</a>
+										<a href="${pageContext.request.contextPath}/user/edit/${user.userid}">修改</a>
+										<a href="${pageContext.request.contextPath}/user/destroy/${user.userid}" class="deletePromptClass">删除</a>
 									</td>
 								</tr>
 							</c:forEach>

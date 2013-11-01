@@ -21,7 +21,7 @@ import com.simonsw.common.controller.path.ResultPath;
  * @since Oct 29, 2013
  */
 @Controller
-@RequestMapping(ResultPath.home)
+@RequestMapping()
 public class HomeController extends CommonController {
 	
 	@RequestMapping(method = RequestMethod.GET)
@@ -30,13 +30,18 @@ public class HomeController extends CommonController {
 		
 		Date date = new Date();
 		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
-		
 		String formattedDate = dateFormat.format(date);
 		
 		model.addAttribute("serverTime", formattedDate );
-		model.addAttribute("errorMessages", "");
+		
 		
 		return "home";
+	}
+	
+	@RequestMapping(value=ResultPath.login, method = RequestMethod.GET)
+	public String login(Model model) {
+		model.addAttribute("errorMessages", "");
+		return "login";
 	}
 
 	/* (non-Javadoc)

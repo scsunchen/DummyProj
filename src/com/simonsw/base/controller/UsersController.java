@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -53,7 +54,6 @@ public class UsersController extends CommonController {
 	
 	@RequestMapping(value = "/login",method=RequestMethod.POST)
 	public String login(HttpServletRequest request, Model model, Users user) {
-		// TODO
 		String username = user.getUsername();
 		String password = user.getPassword();
 		logger.debug("login: username[{}]", username);
@@ -61,9 +61,29 @@ public class UsersController extends CommonController {
 		
 		if(!userService.isExistUser(user)){
 			model.addAttribute("errorMessages", "填写有错");
-			return "home";
+			return ResultPath.login;
 		}
 		
+		return redirect(ResultPath.user);
+	}
+	
+	@RequestMapping("/edit/{id}")
+	public String edit(@PathVariable long id, Model model) {
+		logger.debug("edit: id[{}]", id);
+		model.addAttribute("user", userService.get(id));
+		return forward(ViewName.edit);
+	}
+	
+	@RequestMapping(value = "/update/{user.userid}", method = RequestMethod.POST)
+	public String update(Users user) {
+		userService.saveOrUpdate(user);
+		return redirect(ResultPath.user);
+	}
+	
+	@RequestMapping("/destroy/{id}")
+	public String destroy(@PathVariable long id) {
+		logger.debug("destroy: id[{}]", id);
+		userService.delete(id);
 		return redirect(ResultPath.user);
 	}
 	

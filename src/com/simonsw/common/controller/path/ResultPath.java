@@ -8,5 +8,5 @@ public interface ResultPath {
 	
 	String demo = "/demo";
 	String user = "/user";
-	String home = "/index";
+	String login = "/login";
 }
