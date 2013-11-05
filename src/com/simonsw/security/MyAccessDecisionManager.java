@@ -45,6 +45,7 @@ public class MyAccessDecisionManager implements AccessDecisionManager {
 			logger.debug("[MyAccessDecisionManager] needPermission is " + needPermission);
 			// 用户所拥有的权限authentication
 			for (GrantedAuthority ga : authentication.getAuthorities()) {
+				logger.debug("[MyAccessDecisionManager] ga.getAuthority() is " + ga.getAuthority());
 				if (needPermission.contains((ga.getAuthority()))) {
 					return;
 				}

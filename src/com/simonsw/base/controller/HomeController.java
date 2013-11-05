@@ -43,6 +43,11 @@ public class HomeController extends CommonController {
 		model.addAttribute("errorMessages", "");
 		return "login";
 	}
+	
+	@RequestMapping(value=ResultPath._403, method = RequestMethod.GET)
+	public String limit(Model model) {
+		return "403";
+	}
 
 	/* (non-Javadoc)
 	 * @see com.simonsw.common.controller.CommonController#getModule()

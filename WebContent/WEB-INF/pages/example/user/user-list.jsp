@@ -1,5 +1,6 @@
 <%@ page language="java" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <%@ taglib prefix="u" uri="ueye"%>
 
 <!DOCTYPE html>
@@ -48,7 +49,9 @@
 										<u:dateFormat value="${user.createDateTime}"/>
 									</td>
 									<td>
-										<a href="${pageContext.request.contextPath}/user/edit/${user.userid}">修改</a>
+										<sec:authorize ifAnyGranted="ROLE_ADMIN">
+											<a href="${pageContext.request.contextPath}/user/edit/${user.userid}">修改</a>
+										</sec:authorize>
 										<a href="${pageContext.request.contextPath}/user/destroy/${user.userid}" class="deletePromptClass">删除</a>
 									</td>
 								</tr>

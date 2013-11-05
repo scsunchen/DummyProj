@@ -9,4 +9,5 @@ public interface ResultPath {
 	String demo = "/demo";
 	String user = "/user";
 	String login = "/login";
+	String _403 = "/403";
 }
