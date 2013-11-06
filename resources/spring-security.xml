@@ -77,12 +77,23 @@ http://www.springframework.org/schema/security/spring-security-3.1.xsd">
 	<beans:bean id="myAuthenticationManagers"
 		class="com.simonsw.security.MyAuthenticationManager">
 	</beans:bean>
-	
-	<beans:bean id="myLogoutSuccessHandler" class="com.simonsw.security.MyLogoutSuccessHandler"/>
+
+	<beans:bean id="myLogoutSuccessHandler" class="com.simonsw.security.MyLogoutSuccessHandler" />
 
 	<!-- 未登录的切入点 -->
 	<beans:bean id="authenticationProcessingFilterEntryPoint"
 		class="org.springframework.security.web.authentication.LoginUrlAuthenticationEntryPoint">
 		<beans:property name="loginFormUrl" value="/login"></beans:property>
 	</beans:bean>
+
+	<!-- Jcaptcha相关的配置 -->
+	<beans:bean id="captchaService"
+		class="com.octo.captcha.service.image.DefaultManageableImageCaptchaService">
+		<beans:property name="captchaEngine" ref="myCaptchaEngine" />
+		<!-- 默认生成的图片180秒过期 , 可另行设置 
+		<property name="minGuarantedStorageDelayInSeconds" 
+			value="180" /> -->
+	</beans:bean>
+
+	<beans:bean id="myCaptchaEngine" class="com.simonsw.base.jcaptcha.GMailEngine"></beans:bean>
 </beans:beans>

@@ -11,4 +11,9 @@ public interface ResultPath {
 	String login = "/login";
 	String logout = "/logout";
 	String _403 = "/403";
+	
+	String GOTO_HOME = "home";
+	String GOTO_LOGIN = "login";
+	String GOTO_403 = "403";
+	String GOTO_INDEX = "/";
 }

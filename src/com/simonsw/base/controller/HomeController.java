@@ -34,23 +34,23 @@ public class HomeController extends CommonController {
 		
 		model.addAttribute("serverTime", formattedDate );
 		
-		return "home";
+		return ResultPath.GOTO_HOME;
 	}
 	
 	@RequestMapping(value=ResultPath.login, method = RequestMethod.GET)
 	public String login(Model model) {
 		model.addAttribute("errorMessages", "");
-		return "login";
+		return ResultPath.GOTO_LOGIN;
 	}
 	
 	@RequestMapping(value=ResultPath._403, method = RequestMethod.GET)
-	public String limit(Model model) {
-		return "403";
+	public String limitFor403(Model model) {
+		return ResultPath.GOTO_403;
 	}
 	
 	@RequestMapping(value=ResultPath.logout, method = RequestMethod.GET)
 	public String logout(Model model) {
-		return "/";
+		return ResultPath.GOTO_INDEX;
 	}
 
 	/* (non-Javadoc)
