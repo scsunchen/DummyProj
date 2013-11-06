@@ -8,7 +8,7 @@ http://www.springframework.org/schema/security/spring-security-3.1.xsd">
 	<debug />
 
 	<global-method-security pre-post-annotations="enabled" />
-	
+
 	<!-- 此目录下不需要过滤 -->
 	<http pattern="/js/**" security="none" />
 	<http pattern="/css/**" security="none" />
@@ -17,8 +17,10 @@ http://www.springframework.org/schema/security/spring-security-3.1.xsd">
 
 	<http use-expressions="true" entry-point-ref="authenticationProcessingFilterEntryPoint">
 		<!-- if no limit, go to 403 page -->
-		<access-denied-handler error-page="/403"/>
-		<logout />
+		<access-denied-handler error-page="/403" />
+		<!-- Logout -->
+		<logout invalidate-session="true" logout-url="/logout"
+			success-handler-ref="myLogoutSuccessHandler" />
 		<!-- 实现免登陆验证 -->
 		<remember-me />
 		<session-management invalid-session-url="/">
@@ -75,6 +77,8 @@ http://www.springframework.org/schema/security/spring-security-3.1.xsd">
 	<beans:bean id="myAuthenticationManagers"
 		class="com.simonsw.security.MyAuthenticationManager">
 	</beans:bean>
+	
+	<beans:bean id="myLogoutSuccessHandler" class="com.simonsw.security.MyLogoutSuccessHandler"/>
 
 	<!-- 未登录的切入点 -->
 	<beans:bean id="authenticationProcessingFilterEntryPoint"

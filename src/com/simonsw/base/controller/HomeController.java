@@ -34,7 +34,6 @@ public class HomeController extends CommonController {
 		
 		model.addAttribute("serverTime", formattedDate );
 		
-		
 		return "home";
 	}
 	
@@ -47,6 +46,11 @@ public class HomeController extends CommonController {
 	@RequestMapping(value=ResultPath._403, method = RequestMethod.GET)
 	public String limit(Model model) {
 		return "403";
+	}
+	
+	@RequestMapping(value=ResultPath.logout, method = RequestMethod.GET)
+	public String logout(Model model) {
+		return "/";
 	}
 
 	/* (non-Javadoc)

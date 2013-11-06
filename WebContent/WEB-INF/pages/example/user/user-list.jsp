@@ -27,6 +27,7 @@
 					            <input class="input-small" name="filter_BAT_createDateTime" value="${filter_BAT_createDateTime_}" onFocus="WdatePicker()" placeholder="结束日期"/>
 					            
 							  	<button type="submit" class="btn btn-primary">查询</button>
+							  	<a href="<c:url value='/logout'/>">logout</a>
 					        </div>
 						</div>
 					  </div>
