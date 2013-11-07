@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import com.simonsw.base.entity.Users;
 import com.simonsw.base.service.UserService;
 import com.simonsw.common.orm.dao.HibernateDaoSupport;
+import com.simonsw.common.util.CipherUtil;
 
 /**
  * @author Simon Lv
@@ -31,7 +32,8 @@ public class UserServiceImpl extends HibernateDaoSupport<Users> implements
 		if (loginUser != null) {
 			Users user = getUserByName(loginUser.getUsername());
 			if (user != null) {
-				if (user.getPassword().equals(loginUser.getPassword())) {
+				if (CipherUtil.validatePassword(user.getPassword(),
+						loginUser.getPassword())) {
 					return true;
 				}
 			}
@@ -49,7 +51,7 @@ public class UserServiceImpl extends HibernateDaoSupport<Users> implements
 	public Users getUserByName(String username) {
 		Users user = null;
 		List<Users> users = findDatas("username", username);
-		if(users != null && users.size() > 0){
+		if (users != null && users.size() > 0) {
 			user = users.get(0);
 		}
 		return user;

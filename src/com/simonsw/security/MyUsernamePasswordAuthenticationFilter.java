@@ -7,6 +7,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationServiceException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -15,6 +17,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 
 import com.simonsw.base.entity.Users;
 import com.simonsw.base.service.UserService;
+import com.simonsw.common.util.CipherUtil;
 import com.simonsw.common.util.StringUtils;
 
 /**
@@ -25,6 +28,8 @@ public class MyUsernamePasswordAuthenticationFilter extends
 		UsernamePasswordAuthenticationFilter {
 	@Autowired
 	protected UserService userService;
+	
+	private Logger logger = LoggerFactory.getLogger(getClass());
 
 	public static final String VALIDATE_CODE = "validateCode";
 	public static final String USERNAME = "username";
@@ -42,8 +47,10 @@ public class MyUsernamePasswordAuthenticationFilter extends
 		// checkValidateCode(request);
 
 		String username = obtainUsername(request);
-		String password = obtainPassword(request);
-
+		logger.debug("[MyUsernamePasswordAuthenticationFilter] username ==> "+ username);
+		String password = CipherUtil.generatePassword(obtainPassword(request));
+		logger.debug("[MyUsernamePasswordAuthenticationFilter] password ==> "+ password);
+		
 		// 验证用户账号与密码是否对应
 		username = username.trim();
 

@@ -18,6 +18,7 @@ import com.simonsw.common.bean.Page;
 import com.simonsw.common.controller.CommonController;
 import com.simonsw.common.controller.Module;
 import com.simonsw.common.controller.path.ResultPath;
+import com.simonsw.common.util.CipherUtil;
 
 /**
  * @author Simon Lv
@@ -33,61 +34,64 @@ public class UsersController extends CommonController {
 		userService.findPage(page);
 		return forward(ViewName.list);
 	}
-	
-	@RequestMapping(value="/register-new", method=RequestMethod.GET)
-	public String register(Model model){
+
+	@RequestMapping(value = "/register-new", method = RequestMethod.GET)
+	public String register(Model model) {
 		model.addAttribute("errorMessages", "");
 		return forward(ViewName.insert);
 	}
-	
-	@RequestMapping(value="/register", method = RequestMethod.POST)
-	public String createUser(Model model, Users user){
+
+	@RequestMapping(value = "/register", method = RequestMethod.POST)
+	public String createUser(Model model, Users user) {
 		logger.debug("create: user[{}]", user);
-		if(userService.getUserByName(user.getUsername()) != null){
+		if (userService.getUserByName(user.getUsername()) != null) {
 			model.addAttribute("errorMessages", "用户名重复");
 			return forward(ViewName.insert);
 		}
-		
+		user.setPassword(CipherUtil.generatePassword(user.getPassword()));
 		userService.save(user);
 		return redirect(ResultPath.user);
 	}
-	
-	@RequestMapping(value = "/login",method=RequestMethod.POST)
+
+	@RequestMapping(value = "/login", method = RequestMethod.POST)
 	public String login(HttpServletRequest request, Model model, Users user) {
 		String username = user.getUsername();
 		String password = user.getPassword();
 		logger.debug("login: username[{}]", username);
 		logger.debug("login: password[{}]", password);
-		
-		if(!userService.isExistUser(user)){
+
+		if (!userService.isExistUser(user)) {
 			model.addAttribute("errorMessages", "填写有错");
 			return ResultPath.login;
 		}
-		
+
 		return redirect(ResultPath.user);
 	}
-	
+
 	@RequestMapping("/edit/{id}")
 	public String edit(@PathVariable long id, Model model) {
 		logger.debug("edit: id[{}]", id);
 		model.addAttribute("user", userService.get(id));
 		return forward(ViewName.edit);
 	}
-	
+
 	@RequestMapping(value = "/update/{user.userid}", method = RequestMethod.POST)
 	public String update(Users user) {
+		user.setPassword(CipherUtil.generatePassword(user.getPassword()));
 		userService.saveOrUpdate(user);
 		return redirect(ResultPath.user);
 	}
-	
+
 	@RequestMapping("/destroy/{id}")
 	public String destroy(@PathVariable long id) {
 		logger.debug("destroy: id[{}]", id);
 		userService.delete(id);
 		return redirect(ResultPath.user);
 	}
-	
-	/* (non-Javadoc)
+
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see com.simonsw.common.controller.CommonController#getModule()
 	 */
 	@Override
