@@ -7,7 +7,7 @@
 
 	<context-param>
 		<param-name>contextConfigLocation</param-name>
-		<param-value>classpath:app.xml, classpath:spring-security.xml</param-value>
+		<param-value>classpath:app.xml, classpath:spring-security.xml, classpath:spring-quartz.xml</param-value>
 	</context-param>
 
 	<listener>
