@@ -1,7 +1,7 @@
 package com.simonsw.common.controller;
 
 /**
- * @author lv_jiafa@hoperun.com
+ * @author Simon Lv
  * @since 2012-8-9
  */
 public enum Module {

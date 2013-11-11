@@ -9,7 +9,7 @@ import org.hibernate.annotations.Type;
 import org.joda.time.DateTime;
 
 /**
- * @author lv_jiafa@hoperun.com
+ * @author Simon Lv
  * @since 2012-5-28
  */
 @SuppressWarnings("serial")

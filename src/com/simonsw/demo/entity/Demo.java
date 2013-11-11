@@ -12,7 +12,7 @@ import com.simonsw.common.Cons;
 import com.simonsw.common.orm.entity.BaseEntity;
 
 /**
- * @author lv_jiafa@hoperun.com
+ * @author Simon Lv
  * @since 2012-8-9
  */
 @SuppressWarnings("serial")

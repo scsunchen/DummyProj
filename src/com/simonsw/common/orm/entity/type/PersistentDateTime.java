@@ -15,7 +15,7 @@ import org.joda.time.DateTime;
 import com.simonsw.common.orm.entity.type.PersistentDateTime;
 
 /**
- * @author lv_jiafa@hoperun.com
+ * @author Simon Lv
  * @since 2012-5-29
  */
 @SuppressWarnings("serial")

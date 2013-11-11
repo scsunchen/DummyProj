@@ -18,7 +18,7 @@ import com.simonsw.common.orm.entity.BaseEntity;
 import com.simonsw.common.orm.dao.BaseDao;
 
 /**
- * @author lv_jiafa@hoperun.com
+ * @author Simon Lv
  * @since 2012-5-28
  */
 @Transactional(readOnly = true)

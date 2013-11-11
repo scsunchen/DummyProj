@@ -1,7 +1,7 @@
 package com.simonsw.common.orm;
 
 /**
- * @author lv_jiafa@hoperun.com
+ * @author Simon Lv
  * @since 2012-5-29
  */
 public @interface Comment {

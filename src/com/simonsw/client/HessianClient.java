@@ -7,7 +7,7 @@ import com.simonsw.demo.entity.Demo;
 import com.simonsw.hessian.HelloService;
 
 /**
- * @author lv_jiafa@hoperun.com
+ * @author Simon Lv
  * @since 2012-8-9
  */
 public class HessianClient {

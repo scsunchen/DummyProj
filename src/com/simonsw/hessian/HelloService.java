@@ -5,7 +5,7 @@ import java.util.List;
 import com.simonsw.demo.entity.Demo;
 
 /**
- * @author lv_jiafa@hoperun.com
+ * @author Simon Lv
  * @since 2012-8-9
  */
 public interface HelloService {

@@ -9,7 +9,7 @@ import org.joda.time.DateTime;
 import com.simonsw.common.orm.entity.BaseEntity;
 
 /**
- * @author lv_jiafa@hoperun.com
+ * @author Simon Lv
  * @since 2012-5-30
  */
 @SuppressWarnings("serial")

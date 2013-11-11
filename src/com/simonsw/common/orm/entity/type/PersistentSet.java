@@ -18,7 +18,7 @@ import com.simonsw.common.util.StringUtils;
 import com.simonsw.common.orm.entity.type.PersistentDateTime;
 
 /**
- * @author lv_jiafa@hoperun.com
+ * @author Simon Lv
  * @since 2012-7-19
  */
 @SuppressWarnings("serial")

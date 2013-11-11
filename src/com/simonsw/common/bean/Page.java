@@ -7,7 +7,7 @@ import org.apache.commons.lang.StringUtils;
 import com.google.common.collect.Lists;
 
 /**
- * @author lv_jiafa@hoperun.com
+ * @author Simon Lv
  * @since 2012-5-28
  */
 public class Page {

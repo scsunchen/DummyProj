@@ -23,37 +23,38 @@ import com.simonsw.common.controller.path.ResultPath;
 @Controller
 @RequestMapping()
 public class HomeController extends CommonController {
-	
+
 	@RequestMapping(method = RequestMethod.GET)
 	public String home(Locale locale, Model model) {
 		logger.info("Welcome home! The client locale is {}.", locale);
-		
-		Date date = new Date();
-		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
-		String formattedDate = dateFormat.format(date);
-		
-		model.addAttribute("serverTime", formattedDate );
-		
+
+		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG,
+				DateFormat.LONG, locale);
+
+		model.addAttribute("serverTime", dateFormat.format(new Date()));
+
 		return ResultPath.GOTO_HOME;
 	}
-	
-	@RequestMapping(value=ResultPath.login, method = RequestMethod.GET)
+
+	@RequestMapping(value = ResultPath.login, method = RequestMethod.GET)
 	public String login(Model model) {
 		model.addAttribute("errorMessages", "");
 		return ResultPath.GOTO_LOGIN;
 	}
-	
-	@RequestMapping(value=ResultPath._403, method = RequestMethod.GET)
+
+	@RequestMapping(value = ResultPath._403, method = RequestMethod.GET)
 	public String limitFor403(Model model) {
 		return ResultPath.GOTO_403;
 	}
-	
-	@RequestMapping(value=ResultPath.logout, method = RequestMethod.GET)
+
+	@RequestMapping(value = ResultPath.logout, method = RequestMethod.GET)
 	public String logout(Model model) {
 		return ResultPath.GOTO_INDEX;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see com.simonsw.common.controller.CommonController#getModule()
 	 */
 	@Override

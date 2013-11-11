@@ -11,7 +11,7 @@ import org.apache.commons.lang.StringUtils;
 import com.simonsw.common.util.DateUtils;
 
 /**
- * @author lv_jiafa@hoperun.com
+ * @author Simon Lv
  * @since 2012-8-9
  */
 @SuppressWarnings("serial")

@@ -7,7 +7,7 @@ import com.simonsw.demo.entity.Demo;
 import com.simonsw.demo.service.DemoService;
 
 /**
- * @author lv_jiafa@hoperun.com
+ * @author Simon Lv
  * @since 2012-8-9
  */
 @Service
